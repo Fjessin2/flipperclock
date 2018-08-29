@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/firstDigitMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/secondDigitMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:id="@+id/digitsSplitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:includeFontPadding="false"
+            android:text=":"/>
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/firstDigitSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/secondDigitSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+</LinearLayout>
