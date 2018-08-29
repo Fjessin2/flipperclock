@@ -3,11 +3,11 @@ package dk.fjinc.flipperclocklibrary
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.view_countdown_clock_digit.view.*
 import kotlinx.android.synthetic.main.view_simple_clock.view.*
 import java.util.concurrent.TimeUnit

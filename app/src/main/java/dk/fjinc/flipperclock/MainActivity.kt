@@ -1,7 +1,7 @@
 package dk.fjinc.flipperclock
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import dk.fjinc.flipperclocklibrary.CountDownClock
 import kotlinx.android.synthetic.main.activity_main.*
