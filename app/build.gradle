@@ -24,6 +24,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
-    implementation project(':flipperclocklibrary')
-//    implementation 'com.github.Fjessin2:flipperclock:1.0.1'
+//    implementation project(':flipperclocklibrary')
+    implementation 'com.github.Fjessin2:flipperclock:1.0.3'
 }
