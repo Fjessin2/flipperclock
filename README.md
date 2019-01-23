@@ -27,11 +27,9 @@ allprojects {
 2. Add the dependency in your module's build.gradle file
 
 ```
-allprojects {
-  repositories {
-     ...
-     maven { url 'https://jitpack.io' }
-  }
+dependencies {
+    ...
+    implementation 'com.github.Fjessin2:flipperclock:1.0.4'
 }
 ```
 
