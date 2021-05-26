@@ -29,7 +29,7 @@ allprojects {
 ```
 dependencies {
     ...
-    implementation 'com.github.Fjessin2:flipperclock:1.0.4'
+    implementation 'com.github.fjessin2:flipperclock:1.0.4'
 }
 ```
 
