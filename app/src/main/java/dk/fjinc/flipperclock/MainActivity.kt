@@ -16,18 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        countdownClockFirst.setCountdownListener(object: CountDownClock.CountdownCallBack {
-            override fun countdownAboutToFinish() {
-                Log.d("here","Countdown first is about to finish")
-            }
-
-            override fun countdownFinished() {
-                Log.d("here", "Countdown first finished")
-                countdownClockFirst.startCountDown(15000)
-            }
-        })
-
-        countdownClockFirst.startCountDown(15000)
 
         countdownClockSecond.setCountdownListener(object: CountDownClock.CountdownCallBack {
             override fun countdownAboutToFinish() {
@@ -36,31 +24,19 @@ class MainActivity : AppCompatActivity() {
 
             override fun countdownFinished() {
                 Log.d("here", "Countdown second finished")
-                countdownClockSecond.startCountDown(70000)
+                countdownClockSecond.startCountDown(4200000)
             }
         })
 
-        countdownClockSecond.startCountDown(70000)
+        countdownClockSecond.startCountDown(7000)
 
-        countdownClockThird.setCountdownListener(object: CountDownClock.CountdownCallBack {
-            override fun countdownAboutToFinish() {
-                Log.d("here","Countdown third is about to finish")
-            }
 
-            override fun countdownFinished() {
-                Log.d("here", "Countdown third finished")
-                countdownClockThird.startCountDown(570000)
-            }
-        })
 
-        countdownClockThird.startCountDown(570000)
     }
 
     override fun onPause() {
         super.onPause()
 
-        countdownClockFirst.resetCountdownTimer()
         countdownClockSecond.resetCountdownTimer()
-        countdownClockThird.resetCountdownTimer()
     }
 }

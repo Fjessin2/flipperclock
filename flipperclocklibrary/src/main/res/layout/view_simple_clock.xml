@@ -9,6 +9,29 @@
     android:orientation="horizontal">
 
         <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/firstDigitHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
+            android:id="@+id/secondDigitHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:id="@+id/digitsSplitter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:includeFontPadding="false"
+            android:text=":"/>
+
+        <dk.fjinc.flipperclocklibrary.CountDownDigit
             android:id="@+id/firstDigitMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

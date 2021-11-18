@@ -7,27 +7,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <dk.fjinc.flipperclocklibrary.CountDownClock
-        android:id="@+id/countdownClockFirst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        countdownClock:resetSymbol="8"
-        countdownClock:digitSplitterColor="@color/colorAccent"
-        countdownClock:digitDividerColor="@color/colorAccent"
-        countdownClock:digitTopDrawable="@drawable/background_top"
-        countdownClock:digitBottomDrawable="@drawable/background_bottom"
-        countdownClock:digitTextColor="@color/colorAccent"
-        countdownClock:digitPadding="3dp"
-        countdownClock:splitterPadding="1dp"
-        countdownClock:animationDuration="350"
-        countdownClock:almostFinishedCallbackTimeInSeconds="5"
-        countdownClock:countdownTickInterval="250"
-        countdownClock:halfDigitHeight="15dp"
-        countdownClock:digitWidth="40dp"
-        countdownClock:digitTextSize="18sp" />
+
 
     <dk.fjinc.flipperclocklibrary.CountDownClock
         android:id="@+id/countdownClockSecond"
@@ -48,30 +28,8 @@
         countdownClock:animationDuration="550"
         countdownClock:almostFinishedCallbackTimeInSeconds="5"
         countdownClock:countdownTickInterval="250"
-        countdownClock:halfDigitHeight="30dp"
-        countdownClock:digitWidth="50dp"
-        countdownClock:digitTextSize="45sp"/>
+        countdownClock:halfDigitHeight="20dp"
+        countdownClock:digitWidth="20dp"
+        countdownClock:digitTextSize="25sp"/>
 
-    <dk.fjinc.flipperclocklibrary.CountDownClock
-        android:id="@+id/countdownClockThird"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:layout_marginTop="20dp"
-        countdownClock:resetSymbol="8"
-        countdownClock:digitSplitterColor="@color/orange"
-        countdownClock:digitDividerColor="@color/orange"
-        countdownClock:digitTopDrawable="@drawable/background_top"
-        countdownClock:digitBottomDrawable="@drawable/background_bottom"
-        countdownClock:digitTextColor="@color/yellow"
-        countdownClock:digitPadding="12dp"
-        countdownClock:splitterPadding="6dp"
-        countdownClock:animationDuration="850"
-        countdownClock:almostFinishedCallbackTimeInSeconds="5"
-        countdownClock:countdownTickInterval="250"
-        countdownClock:halfDigitHeight="50dp"
-        countdownClock:digitWidth="50dp"
-        countdownClock:digitTextSize="70sp"/>
 </LinearLayout>
