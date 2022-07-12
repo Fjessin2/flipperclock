@@ -99,6 +99,8 @@ class CountDownClock : LinearLayout {
 
     fun resetCountdownTimer() {
         countDownTimer?.cancel()
+        firstDigitHour.setNewText(resetSymbol)
+        secondDigitHour.setNewText(resetSymbol)
         firstDigitMinute.setNewText(resetSymbol)
         secondDigitMinute.setNewText(resetSymbol)
         firstDigitSecond.setNewText(resetSymbol)
@@ -110,11 +112,27 @@ class CountDownClock : LinearLayout {
     ////////////////
 
     private fun setCountDownTime(timeToStart: Long) {
-        val minutes = TimeUnit.MILLISECONDS.toMinutes(timeToStart)
+        val hours = TimeUnit.MILLISECONDS.toHours(timeToStart)
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(timeToStart-TimeUnit.HOURS.toMillis(hours))
         val seconds = TimeUnit.MILLISECONDS.toSeconds(timeToStart - TimeUnit.MINUTES.toMillis(minutes))
 
+        val hoursString = hours.toString()
         val minutesString = minutes.toString()
         val secondsString = seconds.toString()
+
+
+        if (hoursString.length == 2) {
+            firstDigitHour.animateTextChange(hoursString[0].toString())
+            secondDigitHour.animateTextChange(hoursString[1].toString())
+        } else if (hoursString.length == 1) {
+            firstDigitHour.animateTextChange("0")
+            secondDigitHour.animateTextChange(hoursString[0].toString())
+        } else {
+            firstDigitHour.animateTextChange("2")
+            secondDigitHour.animateTextChange("3")
+        }
+
+
         if (minutesString.length == 2) {
             firstDigitMinute.animateTextChange(minutesString[0].toString())
             secondDigitMinute.animateTextChange(minutesString[1].toString())
@@ -125,6 +143,9 @@ class CountDownClock : LinearLayout {
             firstDigitMinute.animateTextChange("5")
             secondDigitMinute.animateTextChange("9")
         }
+
+
+
         if (secondsString.length == 2) {
             firstDigitSecond.animateTextChange(secondsString[0].toString())
             secondDigitSecond.animateTextChange(secondsString[1].toString())
@@ -151,10 +172,17 @@ class CountDownClock : LinearLayout {
 
     private fun setDigitTopDrawable(digitTopDrawable: Drawable?) {
         if (digitTopDrawable != null) {
+
+            firstDigitHour.frontUpper.background = digitTopDrawable
+            firstDigitHour.backUpper.background = digitTopDrawable
+            secondDigitHour.frontUpper.background = digitTopDrawable
+            secondDigitHour.backUpper.background = digitTopDrawable
+
             firstDigitMinute.frontUpper.background = digitTopDrawable
             firstDigitMinute.backUpper.background = digitTopDrawable
             secondDigitMinute.frontUpper.background = digitTopDrawable
             secondDigitMinute.backUpper.background = digitTopDrawable
+
             firstDigitSecond.frontUpper.background = digitTopDrawable
             firstDigitSecond.backUpper.background = digitTopDrawable
             secondDigitSecond.frontUpper.background = digitTopDrawable
@@ -166,10 +194,16 @@ class CountDownClock : LinearLayout {
 
     private fun setDigitBottomDrawable(digitBottomDrawable: Drawable?) {
         if (digitBottomDrawable != null) {
+            firstDigitHour.frontLower.background = digitBottomDrawable
+            firstDigitHour.backLower.background = digitBottomDrawable
+            secondDigitHour.frontLower.background = digitBottomDrawable
+            secondDigitHour.backLower.background = digitBottomDrawable
+
             firstDigitMinute.frontLower.background = digitBottomDrawable
             firstDigitMinute.backLower.background = digitBottomDrawable
             secondDigitMinute.frontLower.background = digitBottomDrawable
             secondDigitMinute.backLower.background = digitBottomDrawable
+
             firstDigitSecond.frontLower.background = digitBottomDrawable
             firstDigitSecond.backLower.background = digitBottomDrawable
             secondDigitSecond.frontLower.background = digitBottomDrawable
@@ -184,6 +218,9 @@ class CountDownClock : LinearLayout {
         if (dividerColor == 0) {
             dividerColor = ContextCompat.getColor(context, R.color.transparent)
         }
+        firstDigitHour.digitDivider.setBackgroundColor(dividerColor)
+        secondDigitHour.digitDivider.setBackgroundColor(dividerColor)
+
         firstDigitMinute.digitDivider.setBackgroundColor(dividerColor)
         secondDigitMinute.digitDivider.setBackgroundColor(dividerColor)
         firstDigitSecond.digitDivider.setBackgroundColor(dividerColor)
@@ -193,24 +230,33 @@ class CountDownClock : LinearLayout {
     private fun setDigitSplitterColor(digitsSplitterColor: Int) {
         if (digitsSplitterColor != 0) {
             digitsSplitter.setTextColor(digitsSplitterColor)
+            digitsSplitter2.setTextColor(digitsSplitterColor)
         } else {
             digitsSplitter.setTextColor(ContextCompat.getColor(context, R.color.transparent))
+            digitsSplitter2.setTextColor(ContextCompat.getColor(context, R.color.transparent))
         }
     }
 
     private fun setSplitterDigitTextSize(digitsTextSize: Float) {
         digitsSplitter.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        digitsSplitter2.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
     }
 
     private fun setDigitPadding(digitPadding: Int) {
-        firstDigitMinute.setPadding(digitPadding, digitPadding, digitPadding, digitPadding)
+
+        firstDigitHour.setPadding(digitPadding, digitPadding, digitPadding, digitPadding)
+        secondDigitHour.setPadding(digitPadding, digitPadding, 0, digitPadding)
+
+        firstDigitMinute.setPadding(0, digitPadding, digitPadding, digitPadding)
         secondDigitMinute.setPadding(digitPadding, digitPadding, 0, digitPadding)
+
         firstDigitSecond.setPadding(0, digitPadding, digitPadding, digitPadding)
         secondDigitSecond.setPadding(digitPadding, digitPadding, digitPadding, digitPadding)
     }
 
     private fun setSplitterPadding(splitterPadding: Int) {
         digitsSplitter.setPadding(splitterPadding, 0, splitterPadding, 0)
+        digitsSplitter2.setPadding(splitterPadding, 0, splitterPadding, 0)
     }
 
     private fun setDigitTextColor(digitsTextColor: Int) {
@@ -218,6 +264,11 @@ class CountDownClock : LinearLayout {
         if (textColor == 0) {
             textColor = ContextCompat.getColor(context, R.color.transparent)
         }
+        firstDigitHour.frontUpperText.setTextColor(textColor)
+        firstDigitHour.backUpperText.setTextColor(textColor)
+        secondDigitHour.frontUpperText.setTextColor(textColor)
+        secondDigitHour.backUpperText.setTextColor(textColor)
+
         firstDigitMinute.frontUpperText.setTextColor(textColor)
         firstDigitMinute.backUpperText.setTextColor(textColor)
         secondDigitMinute.frontUpperText.setTextColor(textColor)
@@ -226,6 +277,11 @@ class CountDownClock : LinearLayout {
         firstDigitSecond.backUpperText.setTextColor(textColor)
         secondDigitSecond.frontUpperText.setTextColor(textColor)
         secondDigitSecond.backUpperText.setTextColor(textColor)
+
+        firstDigitHour.frontLowerText.setTextColor(textColor)
+        firstDigitHour.backLowerText.setTextColor(textColor)
+        secondDigitHour.frontLowerText.setTextColor(textColor)
+        secondDigitHour.backLowerText.setTextColor(textColor)
 
         firstDigitMinute.frontLowerText.setTextColor(textColor)
         firstDigitMinute.backLowerText.setTextColor(textColor)
@@ -238,18 +294,32 @@ class CountDownClock : LinearLayout {
     }
 
     private fun setDigitTextSize(digitsTextSize: Float) {
+        firstDigitHour.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        firstDigitHour.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        secondDigitHour.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        secondDigitHour.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+
         firstDigitMinute.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         firstDigitMinute.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitMinute.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitMinute.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+
         firstDigitSecond.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         firstDigitSecond.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitSecond.frontUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitSecond.backUpperText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+
+        firstDigitHour.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        firstDigitHour.backLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        secondDigitHour.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+        secondDigitHour.backLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+
         firstDigitMinute.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         firstDigitMinute.backLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitMinute.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitMinute.backLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
+
+
         firstDigitSecond.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         firstDigitSecond.backLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
         secondDigitSecond.frontLowerText.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitsTextSize)
@@ -257,6 +327,11 @@ class CountDownClock : LinearLayout {
     }
 
     private fun setHalfDigitHeightAndDigitWidth(halfDigitHeight: Int, digitWidth: Int) {
+        setHeightAndWidthToView(firstDigitHour.frontUpper, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(firstDigitHour.backUpper, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(secondDigitHour.frontUpper, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(secondDigitHour.backUpper, halfDigitHeight, digitWidth)
+
         setHeightAndWidthToView(firstDigitMinute.frontUpper, halfDigitHeight, digitWidth)
         setHeightAndWidthToView(firstDigitMinute.backUpper, halfDigitHeight, digitWidth)
         setHeightAndWidthToView(secondDigitMinute.frontUpper, halfDigitHeight, digitWidth)
@@ -268,6 +343,11 @@ class CountDownClock : LinearLayout {
         setHeightAndWidthToView(secondDigitSecond.backUpper, halfDigitHeight, digitWidth)
 
         // Lower
+        setHeightAndWidthToView(firstDigitHour.frontLower, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(firstDigitHour.backLower, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(secondDigitHour.frontLower, halfDigitHeight, digitWidth)
+        setHeightAndWidthToView(secondDigitHour.backLower, halfDigitHeight, digitWidth)
+
         setHeightAndWidthToView(firstDigitMinute.frontLower, halfDigitHeight, digitWidth)
         setHeightAndWidthToView(firstDigitMinute.backLower, halfDigitHeight, digitWidth)
         setHeightAndWidthToView(secondDigitMinute.frontLower, halfDigitHeight, digitWidth)
@@ -279,6 +359,9 @@ class CountDownClock : LinearLayout {
         setHeightAndWidthToView(secondDigitSecond.backLower, halfDigitHeight, digitWidth)
 
         // Dividers
+        firstDigitHour.digitDivider.layoutParams.width = digitWidth
+        secondDigitHour.digitDivider.layoutParams.width = digitWidth
+
         firstDigitMinute.digitDivider.layoutParams.width = digitWidth
         secondDigitMinute.digitDivider.layoutParams.width = digitWidth
         firstDigitSecond.digitDivider.layoutParams.width = digitWidth
@@ -293,6 +376,9 @@ class CountDownClock : LinearLayout {
     }
 
     private fun setAnimationDuration(animationDuration: Int) {
+
+        firstDigitHour.setAnimationDuration(animationDuration.toLong())
+        secondDigitHour.setAnimationDuration(animationDuration.toLong())
         firstDigitMinute.setAnimationDuration(animationDuration.toLong())
         secondDigitMinute.setAnimationDuration(animationDuration.toLong())
         firstDigitSecond.setAnimationDuration(animationDuration.toLong())
@@ -305,10 +391,17 @@ class CountDownClock : LinearLayout {
 
     private fun setTransparentBackgroundColor() {
         val transparent = ContextCompat.getColor(context, R.color.transparent)
+        firstDigitHour.frontLower.setBackgroundColor(transparent)
+        firstDigitHour.backLower.setBackgroundColor(transparent)
+        secondDigitHour.frontLower.setBackgroundColor(transparent)
+        secondDigitHour.backLower.setBackgroundColor(transparent)
+
+
         firstDigitMinute.frontLower.setBackgroundColor(transparent)
         firstDigitMinute.backLower.setBackgroundColor(transparent)
         secondDigitMinute.frontLower.setBackgroundColor(transparent)
         secondDigitMinute.backLower.setBackgroundColor(transparent)
+
         firstDigitSecond.frontLower.setBackgroundColor(transparent)
         firstDigitSecond.backLower.setBackgroundColor(transparent)
         secondDigitSecond.frontLower.setBackgroundColor(transparent)
